@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ui-service
+  profiles:
+    active:
+      - dev
+  cloud:
+    config:
+      uri:
+        - http://localhost:8888
+      username: technovate
+      password: technovate
+      fail-fast: true
