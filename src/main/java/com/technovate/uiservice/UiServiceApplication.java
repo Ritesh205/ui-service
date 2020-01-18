@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableDiscoveryClient
 public class UiServiceApplication {
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(UiServiceApplication.class, args);
 	}
 
@@ -19,7 +19,7 @@ public class UiServiceApplication {
 	static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Override
-		public void configure(HttpSecurity httpSecurity) throws Exception{
+		public void configure(final HttpSecurity httpSecurity) throws Exception {
 			httpSecurity.csrf().ignoringAntMatchers("/eureka/**");
 			super.configure(httpSecurity);
 		}

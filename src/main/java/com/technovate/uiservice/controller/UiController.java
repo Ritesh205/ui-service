@@ -17,9 +17,19 @@ public class UiController {
     @Autowired
     UiService uiService;
 
-    @GetMapping(value = "/verify", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "verify", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> verify(@RequestParam String name) {
         log.info("under verify");
         return new ResponseEntity<String>(uiService.verify(name), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/health")
+    public ResponseEntity<String> healthCheck() {
+        return new ResponseEntity<>("This Application is Healthy", HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "/getAllEmployees")
+    public ResponseEntity<?> getAllEmployees() {
+        return new ResponseEntity<>(uiService.getAllEmployees(), HttpStatus.OK);
     }
 }
