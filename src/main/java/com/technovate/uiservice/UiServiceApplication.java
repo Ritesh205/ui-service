@@ -20,7 +20,8 @@ public class UiServiceApplication {
 
 		@Override
 		public void configure(final HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.csrf().ignoringAntMatchers("/eureka/**");
+			httpSecurity.csrf().ignoringAntMatchers("/eureka/**")
+					.disable().authorizeRequests().antMatchers("/").permitAll();
 			super.configure(httpSecurity);
 		}
 	}

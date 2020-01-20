@@ -6,13 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Employee {
+public class User {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
     private String name;
+    private String email;
+    private String password;
     private String address;
-    private int salary;
 
     @OneToOne
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
