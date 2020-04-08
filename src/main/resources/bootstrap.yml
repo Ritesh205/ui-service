@@ -11,3 +11,4 @@ spring:
       username: technovate
       password: technovate
       fail-fast: true
+      
