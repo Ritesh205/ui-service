@@ -1,6 +1,6 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.7.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id 'com.google.cloud.tools.jib' version '1.8.0'
 }
@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "Greenwich.SR2")
+	set('springCloudVersion', "Hoxton.SR4")
 }
 
 dependencies {
@@ -32,7 +32,9 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
@@ -42,6 +44,10 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
 	compile("org.springframework.boot:spring-boot-devtools")
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+
 }
 
 dependencyManagement {
