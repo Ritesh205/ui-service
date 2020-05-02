@@ -1,6 +1,8 @@
 package com.technovate.uiservice.controller;
 
 import com.technovate.uiservice.models.User;
+import com.technovate.uiservice.properties.UIProperties;
+import com.technovate.uiservice.repositories.RoleRepository;
 import com.technovate.uiservice.service.UiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,16 @@ public class UiController {
     @Autowired
     UiService uiService;
 
+    @Autowired
+    UIProperties uiProperties;
+
+    @Autowired
+    RoleRepository roleRepository;
+
     @GetMapping(value = "verify", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> verify(@RequestParam String name) {
+    public ResponseEntity<?> verify(@RequestParam String name) {
         log.info("under verify");
-        return new ResponseEntity<String>(uiService.verify(name), HttpStatus.OK);
+        return new ResponseEntity<>(roleRepository.findByRoleName("student"), HttpStatus.OK);
     }
 
     @GetMapping(value = "/health")
@@ -45,5 +53,11 @@ public class UiController {
     @GetMapping(value = "/getCollegeDetails", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> validateLogin(@RequestParam int collegeId) {
         return new ResponseEntity<>(uiService.getCollegeDetails(collegeId), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/checkConfig")
+    String getMessage() {
+
+        return uiProperties.getMessage();
     }
 }

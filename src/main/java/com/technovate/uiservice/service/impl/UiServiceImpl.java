@@ -1,17 +1,18 @@
 package com.technovate.uiservice.service.impl;
 
+import java.util.List;
+
 import com.technovate.uiservice.models.College;
 import com.technovate.uiservice.models.User;
 import com.technovate.uiservice.repositories.CollegeRepository;
-import com.technovate.uiservice.repositories.CourseRepository;
 import com.technovate.uiservice.repositories.UserRepository;
 import com.technovate.uiservice.service.UiService;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
@@ -20,9 +21,6 @@ public class UiServiceImpl implements UiService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private CourseRepository courseRepository;
 
     @Autowired
     private CollegeRepository collegeRepository;
