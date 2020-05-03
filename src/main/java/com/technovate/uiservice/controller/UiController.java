@@ -58,6 +58,6 @@ public class UiController {
     @GetMapping(value = "/checkConfig")
     String getMessage() {
 
-        return uiProperties.getMessage();
+        return uiProperties.getMessage().trim();
     }
 }
